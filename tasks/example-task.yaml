@@ -1,0 +1,29 @@
+id: WEB-001
+github_issue: 123 # replace after GitHub Issue creation
+title: "Create accessible sign-up form"
+milestone: M2
+status: ready # mirror Project status; GitHub is authoritative
+priority: P0
+estimate: M
+owner:
+  role: frontend
+  agent_profile: .agents/agents/frontend.md
+requirements: [FR-001, NFR-003]
+depends_on: []
+scope:
+  in:
+    - "Form UI, client-side validation, accessible error states"
+  out:
+    - "Server account creation and email delivery"
+acceptance_criteria:
+  - "Given invalid email, when submitting, then focus moves to a readable inline error."
+  - "Given keyboard-only use, all inputs and submit action are operable."
+verification:
+  - "Component test"
+  - "Keyboard check and screenshot in PR"
+handoffs:
+  next_role: qa
+  required_artifacts: [pull_request, test_result, screenshot]
+human_approval:
+  required: false
+  reason: "No data model, policy, or production change"

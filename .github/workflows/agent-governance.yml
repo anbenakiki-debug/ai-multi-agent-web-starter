@@ -1,0 +1,29 @@
+name: Agent governance
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: read
+
+jobs:
+  linked-work:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require an Issue link in pull requests
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if ! printf '%s' "$PR_BODY" | grep -Eqi '(closes|fixes|resolves) #[0-9]+'; then
+            echo 'PR body must contain: Closes #<issue-number>'
+            exit 1
+          fi
+      - name: Issue template reminder
+        if: github.event_name == 'issues'
+        run: echo 'Check that issue outcome, acceptance criteria, owner, dependencies, verification and approval gate are filled in.'
