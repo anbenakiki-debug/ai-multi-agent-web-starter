@@ -32,7 +32,7 @@
 
 ## Links
 
-- GitHub repository: <URL>
+- GitHub repository: https://github.com/anbenakiki-debug/ai-multi-agent-web-starter
 - GitHub Project: <URL>
 - Production/staging: <URL>
 - Design source: <URL>
